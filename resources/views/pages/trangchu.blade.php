@@ -4,10 +4,10 @@
 <div class="container-fluid" style="width:90%;">
     
 <div class="row">
-    <!-- Hiển thị phần danh mục bên trái -->
-    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
-        <div class="section__news--left">
-                <h2 class="section__title">Các danh mục chính</h2>
+        <!-- Hiển thị phần danh mục bên trái -->
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+            <div class="section__news--left w-100">
+                <!-- <h2 class="section__title">Các danh mục chính</h2>
                 <ul class="list__news--left">
                     @foreach ($category as $value)
                     <li class="list__news--left--item">
@@ -16,7 +16,8 @@
                         </a>
                     </li>
                     @endforeach
-                </ul>
+                </ul> -->
+                @include('layout.menuleft')
             </div>
         </div>
 

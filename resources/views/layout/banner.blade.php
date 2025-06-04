@@ -3,7 +3,7 @@
         @if ($value['active'] == 1)
         <div class="item__banner">
             <a href="#">
-                <img class="banner_web" src="{{ asset('storage/banners/' . $value['image']) }}" alt="Banner Image">
+                <img class="banner_web" src="{{ asset('upload/banner/' . $value['image']) }}" alt="Banner Image">
             </a>
         </div>
         @endif

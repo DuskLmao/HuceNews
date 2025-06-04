@@ -1,5 +1,5 @@
 
-@extends('layout.index')
+@extends('layout.index2')
 
 @section('content')
 <section class="content__contact">

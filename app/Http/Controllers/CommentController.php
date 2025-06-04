@@ -10,7 +10,7 @@ use App\Models\News;
 class CommentController extends Controller
 {
     //* xử lý xóa comment
-    public function getDelete($id,$news_id) {
+    public function delete($id, $news_id) {
         Comment::destroy($id);
         return redirect('admin/news/edit/'.$news_id)->with('thongbao','Xóa bình luận thành công');
     }
@@ -30,16 +30,20 @@ class CommentController extends Controller
     }
     
     //* bật active
-    public function postActive($id) {
+    public function active($id, $news_id) {
         Comment::find($id)->update(['active' => 1]);
-
-        return redirect('admin/comment/list')->with('thongbao','Update thành công');
+        if(request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+        return redirect('admin/news/edit/'.$news_id)->with('thongbao','Cập nhật trạng thái thành công');
     }
 
     //* tắt active
-    public function postNoActive($id) {
+    public function block($id, $news_id) {
         Comment::find($id)->update(['active' => 0]);
-        
-        return redirect('admin/news/edit/'.$news_id)->with('thongbao','Update thành công');
+        if(request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+        return redirect('admin/news/edit/'.$news_id)->with('thongbao','Cập nhật trạng thái thành công');
     }
 }

@@ -34,8 +34,8 @@ class BannerController extends Controller
             /* upload file */
             $file     = $request->file('image');
             $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
-            // lưu vào storage/app/public/banners
-            $file->storeAs('public/banners', $filename);
+            // lưu vào storage/app/upload/banners
+            $file->move(public_path('upload/banner'), $filename);
 
             /* create record */
             Banner::create([
@@ -72,13 +72,13 @@ class BannerController extends Controller
         /* nếu đổi ảnh */
         if ($request->hasFile('image')) {
             // xóa ảnh cũ (nếu có)
-            if ($banner->image && Storage::exists('public/banners/' . $banner->image)) {
-                Storage::delete('public/banners/' . $banner->image);
+            if ($banner->image && file_exists(public_path('upload/banner/' . $banner->image))) {
+                unlink(public_path('upload/banner/' . $banner->image));
             }
 
             $file     = $request->file('image');
             $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/banners', $filename);
+            $file->move(public_path('upload/banner'), $filename);
 
             $data['image'] = $filename;
         }
@@ -107,8 +107,8 @@ class BannerController extends Controller
     {
         $banner = Banner::findOrFail($id);
         // xóa file vật lý
-        if ($banner->image && Storage::exists('public/banners/' . $banner->image)) {
-            Storage::delete('public/banners/' . $banner->image);
+        if ($banner->image && Storage::exists('upload/banner/' . $banner->image)) {
+            Storage::delete('upload/banner/' . $banner->image);
         }
         $banner->delete();
 

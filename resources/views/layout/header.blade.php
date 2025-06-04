@@ -4,7 +4,7 @@
             <div class="header_left col-lg-3 col-sm-12 col-md-12 col-xl-3">
                 <div class="logo">
                     <a href="/">
-                        <img src="{{ asset('upload/logo/logo_nghieng.png') }}" alt="Logo" class="logo__img">
+                        <img src="{{ asset('upload/logo/Logo_dung.png') }}" alt="Logo" class="logo__img">
                         <!-- <img src="{{ asset('upload/logo/Logo_dung.png') }}" alt="Logo phụ" class="logo__img" style="margin-left:10px;max-height:60px;"> -->
                     </a>
                 </div>

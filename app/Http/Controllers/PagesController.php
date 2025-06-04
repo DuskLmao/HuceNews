@@ -77,7 +77,7 @@ class PagesController extends Controller
 
     //* trang blog
     public function blog() {
-        $news = News::where('type', 1)->where('active', 1)->orderby('created_at', 'DESC')->simplePaginate(5);
+        $news = News::where('type', 1)->where('active', 1)->orderby('created_at', 'DESC')->paginate(5);
         $name = 'Blog';
         return view('pages.blog', [
             'name' => $name,
@@ -97,7 +97,7 @@ class PagesController extends Controller
     public function video() {
         $news = News::where('type', 0)->where('active', 1)->orderby('created_at', 'DESC')->paginate(5);
         $name = '';
-        return view('pages.blog', [
+        return view('pages.video', [
             'name' => $name,
             'news' => $news
         ]);
@@ -105,17 +105,19 @@ class PagesController extends Controller
 
     //* trang chi tiết
     public function detailsNews($id) {
-        $news = News::find($id);
+        $news = News::with(['Comment' => function($query) {
+            $query->where('active', 1)->orderBy('created_at', 'desc');
+        }, 'Comment.users'])->find($id);
+
         if ($news['type'] == 1) {
             $name = 'Tin tức';
         } else {
-            $name = '';
+            $name = 'Video';
         }
-        // $_SESSION['view'] ='news/'.$id.'_'.$news->Sort_Title;
 
         $title = $news['title'];
-
         $tinlienquan = News::where('subcategory_id', $news['subcategory_id'])->take(4)->get();
+
         return view('pages.details', [
             'news' => $news,
             'name' => $name,

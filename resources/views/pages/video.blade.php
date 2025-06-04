@@ -19,12 +19,10 @@
                     {!! $value['summary'] !!}
                 </p>
                 <span class="news__time"> {{ $value['created_at']->format('d/m/Y H:i') }}</span>
-
-
             </div>
         </div>
         @endforeach
     </div>
-    {{ $news->links() }}
+    {{ $news->links('vendor.pagination.bootstrap-4') }}
 </section>
 @endsection

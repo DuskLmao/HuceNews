@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-xl-3 col-md-6 col-sm-12">
-                    <div class="nav__menu--footer">
+                    <!-- <div class="nav__menu--footer">
                         <span class="footer__title">Fanpage</span>
                         <div class="fb-page" data-href="https://www.facebook.com/HUCE.News" data-tabs="timeline"
                             data-width="350" data-height="auto" data-small-header="false"
@@ -54,7 +54,7 @@
                                 <a href="https://www.facebook.com/HUCE.News"></a>
                             </blockquote>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

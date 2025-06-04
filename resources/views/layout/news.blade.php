@@ -7,12 +7,12 @@
         @foreach ($baivietnoibat -> sortByDesc('id') as $value)
         <div class="item__news">
             <div class="image__news">
-                <a href="#">
+                <a href="{{ route('news.detail',$value['id']) }}">
                     <img src="upload/news/{!! $value['image'] !!}">
                 </a>
             </div>
             <div class="content__news">
-                <a class="blog__title blog__title--hover" href="#">
+                <a class="blog__title blog__title--hover" href="{{ route('news.detail',$value['id']) }}">
                     {!! $value['title'] !!}
                 </a>
             </div>

@@ -52,7 +52,7 @@
                                             <td>{!! $value['id'] !!}</td>
                                             <td>
                                                 <div  style="white-space:pre-wrap;text-align:left;text-align: center"></div>
-                                          <img width="100px" src="{{ asset('storage/banners/' . $value['image']) }}" alt="">
+                                          <img width="100px" src="{{ asset('upload/banner/' . $value['image']) }}" alt="">
                                             </td>
                                             <td>
                                                 @if ( $value['active'] == 1 )

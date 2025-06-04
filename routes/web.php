@@ -50,6 +50,7 @@ Route::post('/search',[PagesController::class, 'search']);
 Route::get('/video',[PagesController::class, 'video']);
 Route::get('/contact_us',[PagesController::class, 'contact_us']);
 Route::get('/news/{id}_{sort_title}.html',[PagesController::class, 'detailsNews']);
+Route::get('/news/{id}',[PagesController::class, 'detailsNews'])->name('news.detail');
 Route::get('/subcategory/{id}_{sort_name}.html',[PagesController::class, 'subcategory']);
 Route::get('/category/{id}_{sort_name}.html',[PagesController::class, 'category']);
 Route::get('/user/{id}',[PagesController::class, 'userDetails']);
@@ -110,6 +111,11 @@ Route::middleware('staff')->group(function() {
             Route::get('/active/{id}', [NewsController::class, 'postActive']);
             Route::get('/block/{id}', [NewsController::class, 'postNoActive']);
             Route::get('/delete/{id}',[NewsController::class, 'getDelete']);
+        });
+        Route::prefix('comment')->group(function() {
+            Route::get('/block/{id}/{news_id}', [CommentController::class, 'block'])->name('admin.comment.block');
+            Route::get('/active/{id}/{news_id}', [CommentController::class, 'active'])->name('admin.comment.active');
+            Route::get('/delete/{id}/{news_id}', [CommentController::class, 'delete'])->name('admin.comment.delete');
         });
         Route::prefix('banner')->group(function() {
             Route::get('/list', [BannerController::class, 'list'])->name('admin.banner.list');;

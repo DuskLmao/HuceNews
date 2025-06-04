@@ -208,17 +208,20 @@
                                 <td>{!! $value['content'] !!}</td>
                                 <td>{!! $value['created_at'] !!}</td> 
                                 <td>
-                                    @if ($value['active'] == 1)
-                                    <a href="admin/comment/block/{!! $value['id'] !!}">
-                                      <img style="width: 40px" src="upload/icon/accept.png" alt="">
+                                    <a href="javascript:void(0);" 
+                                    class="toggle-active" 
+                                    data-id="{{ $value['id'] }}" 
+                                    data-news="{{ $news['id'] }}" 
+                                    data-active="{{ $value['active'] }}">
+                                        <img style="width: 40px" 
+                                            src="{{ asset($value['active'] == 1 ? 'upload/icon/accept.png' : 'upload/icon/noaccept.png') }}" 
+                                            alt="">
                                     </a>
-                                    @else
-                                    <a href="admin/comment/active/{!! $value['id'] !!}">
-                                        <img style="width: 40px" src="upload/icon/noaccept.png" alt="">
-                                    </a>
-                                    @endif
                                 </td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a class="btn btn-outline-danger" href="admin/comment/delete/{!! $value['id'] !!}/{!! $news['id'] !!}">Delete</a></td>
+                                <td class="center">
+                                    <i class="fa fa-trash-o  fa-fw"></i>
+                                    <a class="btn btn-outline-danger" href="{{ route('admin.comment.delete', ['id' => $value['id'], 'news_id' => $news['id']]) }}">Delete</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -262,4 +265,40 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function(){
+        // ...existing code...
+
+        // Xử lý bật/tắt active comment bằng AJAX
+        $('.toggle-active').click(function() {
+            var $this = $(this);
+            var id = $this.data('id');
+            var news_id = $this.data('news');
+            var active = $this.data('active');
+            var url = '';
+            if(active == 1) {
+                url = '/admin/comment/block/' + id + '/' + news_id;
+            } else {
+                url = '/admin/comment/active/' + id + '/' + news_id;
+            }
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(res) {
+                    // Đổi icon và trạng thái data-active
+                    if(active == 1) {
+                        $this.find('img').attr('src', "{{ asset('upload/icon/noaccept.png') }}");
+                        $this.data('active', 0);
+                    } else {
+                        $this.find('img').attr('src', "{{ asset('upload/icon/accept.png') }}");
+                        $this.data('active', 1);
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 @endsection
+

@@ -54,7 +54,7 @@
                                 @if (Auth::user()->role > 0)
                                 <li><a href="/admin">Vào trang quản lý</a></li>
                                 <li><a href="/trangcanhan">Xem thông tin</a></li>
-                                <li><a href="admin/news/list">Thêm bài viết</a></li>
+                                <li><a href="admin/news/create">Thêm bài viết</a></li>
                                 @endif
                                 <li><a href="/trangcanhan/edit">Đổi thông tin</a></li>
                                 <li><a href="/trangcanhan/changepassword">Đổi mật khẩu</a></li>
